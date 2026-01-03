@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 const app = express(); //Object
 
 //DB Connection
-mongoose.connect('mongodb://127.0.0.1:27017/Product') //Promise
-.then((resp)=>{ console.log("Data-Base CONNECTED") })
-.catch((err)=>{ console.log("Error while connecting Data-Base") })
+mongoose.connect('mongodb+srv://techietosif_db_user:nmTgYiPmLeeJJHD5@cluster0.vxtjvbt.mongodb.net/') //Promise
+.then((resp)=>{ console.log("DB CONNECTED") })
+.catch((err)=>{ console.log("Error while connecting DB") })
 
 
 app.get('/',(req,res)=>{
