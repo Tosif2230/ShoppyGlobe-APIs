@@ -16,15 +16,14 @@ export function verifyToken(req, res, next) {
         }
         UserModel.findById(verifiedToken.id)
           .then((user) => {
-            console.log(user)
+            console.log(user);
             req.user = user;
             next();
           })
-          .catch((err)=> res.status(500).json({ "message": err.message }))
-      })
+          .catch((err) => res.status(500).json({ message: err.message }));
+      }
+    );
   } else {
     return res.status(404).json({ message: "Token Not Found" });
   }
 }
-
-

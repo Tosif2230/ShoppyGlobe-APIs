@@ -30,9 +30,8 @@ export async function fetchProducts(req, res) {
 // Fetch Product by ID
 export async function fetchProductbyID(req, res) {
   try {
-    const fatchProductbyID = await ProductModel.findById(req.params.id)
-    return res.status(200).json(fatchProductbyID); 
-    
+    const fatchProductbyID = await ProductModel.findById(req.params.id);
+    return res.status(200).json(fatchProductbyID);
   } catch (err) {
     return res.status(500).json({ errorMessage: err });
   }
@@ -40,8 +39,12 @@ export async function fetchProductbyID(req, res) {
 //Update Product by ID
 export async function updateProduct(req, res) {
   try {
-    let updatedProduct = await ProductModel.findByIdAndUpdate(req.params.id,req.body,{new:true})
-    return res.status(200).json(updatedProduct);    
+    let updatedProduct = await ProductModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    return res.status(200).json(updatedProduct);
   } catch (err) {
     return res.status(500).json({ errorMessage: err });
   }
@@ -49,12 +52,11 @@ export async function updateProduct(req, res) {
 //Delete Product by ID
 export async function deleteProduct(req, res) {
   try {
-    let deletedProduct = await ProductModel.findByIdAndDelete(req.params.id)
-    if(!deletedProduct){
-      return res.status(404).json("Produt Unavailable")
+    let deletedProduct = await ProductModel.findByIdAndDelete(req.params.id);
+    if (!deletedProduct) {
+      return res.status(404).json("Produt Unavailable");
     }
-    return res.status(200).json({"Deleted Product": deletedProduct});  
-  
+    return res.status(200).json({ "Deleted Product": deletedProduct });
   } catch (err) {
     return res.status(500).json({ errorMessage: err });
   }

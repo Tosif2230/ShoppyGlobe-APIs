@@ -1,19 +1,23 @@
-import express from 'express' // Function
-import productRoutes from './Routes/products.routes.js'
-import userRoutes from './Routes/user.routes.js'
-import connectDB from './config/db.config.js';
+import express from "express"; // Function
+import productRoutes from "./Routes/products.routes.js";
+import userRoutes from "./Routes/user.routes.js";
+import connectDB from "./config/db.config.js";
+import cartRoutes from "./Routes/cart.routes.js";
 //DB Connection
-connectDB()
+connectDB();
 
 const app = express(); //Object
-app.use(express.json()) //json middleware
+app.use(express.json()); //json middleware
 
-app.get('/',(req,res)=>{
-    res.send("Root Route")
-})
+app.get("/", (req, res) => {
+  res.send("Root Route");
+});
 
-productRoutes(app)
-userRoutes(app)
+productRoutes(app);
+userRoutes(app);
+cartRoutes(app);
 
-const PORT = 5000
-app.listen(PORT,()=>{console.log(`SERVER CONNECTED AT PORT ${PORT}`)})
+const PORT = 5000;
+app.listen(PORT, () => {
+  console.log(`SERVER CONNECTED AT PORT ${PORT}`);
+});
