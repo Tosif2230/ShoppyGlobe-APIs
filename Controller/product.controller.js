@@ -19,8 +19,8 @@ export async function fetchProducts(req, res) {
   try {
     const products = await ProductModel.find({});
 
-    if (!products) {
-      return res.status(404).send("Product not available");
+    if (products.length === 0) {
+      return res.status(404).json("Product not available");
     }
     return res.status(200).json(products);
   } catch (err) {
@@ -50,6 +50,9 @@ export async function updateProduct(req, res) {
 export async function deleteProduct(req, res) {
   try {
     let deletedProduct = await ProductModel.findByIdAndDelete(req.params.id)
+    if(!deletedProduct){
+      return res.status(404).json("Produt Unavailable")
+    }
     return res.status(200).json({"Deleted Product": deletedProduct});  
   
   } catch (err) {
